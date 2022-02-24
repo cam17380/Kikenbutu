@@ -11,6 +11,11 @@
 		D7FDC8E027C72C9600BC1747 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FDC8DF27C72C9600BC1747 /* ContentView.swift */; };
 		D7FDC8E227C72C9A00BC1747 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7FDC8E127C72C9A00BC1747 /* Assets.xcassets */; };
 		D7FDC8E527C72C9A00BC1747 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7FDC8E427C72C9A00BC1747 /* Preview Assets.xcassets */; };
+		D7FDC8ED27C72D6F00BC1747 /* QuestSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FDC8EC27C72D6F00BC1747 /* QuestSection.swift */; };
+		D7FDC8EF27C72D9700BC1747 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FDC8EE27C72D9700BC1747 /* ModelData.swift */; };
+		D7FDC8F127C72E4200BC1747 /* heisyu_01.json in Resources */ = {isa = PBXBuildFile; fileRef = D7FDC8F027C72E4200BC1747 /* heisyu_01.json */; };
+		D7FDC8F327C73E9700BC1747 /* ExamSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FDC8F227C73E9700BC1747 /* ExamSectionView.swift */; };
+		D7FDC8F527C73F8200BC1747 /* ExamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FDC8F427C73F8200BC1747 /* ExamView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +25,11 @@
 		D7FDC8E127C72C9A00BC1747 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7FDC8E427C72C9A00BC1747 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D7FDC8E627C72C9A00BC1747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7FDC8EC27C72D6F00BC1747 /* QuestSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestSection.swift; sourceTree = "<group>"; };
+		D7FDC8EE27C72D9700BC1747 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		D7FDC8F027C72E4200BC1747 /* heisyu_01.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = heisyu_01.json; sourceTree = "<group>"; };
+		D7FDC8F227C73E9700BC1747 /* ExamSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamSectionView.swift; sourceTree = "<group>"; };
+		D7FDC8F427C73F8200BC1747 /* ExamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +64,11 @@
 			children = (
 				D7FDC8DD27C72C9600BC1747 /* KikenbutuApp.swift */,
 				D7FDC8DF27C72C9600BC1747 /* ContentView.swift */,
+				D7FDC8F227C73E9700BC1747 /* ExamSectionView.swift */,
+				D7FDC8F427C73F8200BC1747 /* ExamView.swift */,
+				D7FDC8EC27C72D6F00BC1747 /* QuestSection.swift */,
+				D7FDC8EE27C72D9700BC1747 /* ModelData.swift */,
+				D7FDC8F027C72E4200BC1747 /* heisyu_01.json */,
 				D7FDC8E127C72C9A00BC1747 /* Assets.xcassets */,
 				D7FDC8E627C72C9A00BC1747 /* Info.plist */,
 				D7FDC8E327C72C9A00BC1747 /* Preview Content */,
@@ -126,6 +141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7FDC8F127C72E4200BC1747 /* heisyu_01.json in Resources */,
 				D7FDC8E527C72C9A00BC1747 /* Preview Assets.xcassets in Resources */,
 				D7FDC8E227C72C9A00BC1747 /* Assets.xcassets in Resources */,
 			);
@@ -138,8 +154,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7FDC8F327C73E9700BC1747 /* ExamSectionView.swift in Sources */,
 				D7FDC8E027C72C9600BC1747 /* ContentView.swift in Sources */,
+				D7FDC8EF27C72D9700BC1747 /* ModelData.swift in Sources */,
+				D7FDC8ED27C72D6F00BC1747 /* QuestSection.swift in Sources */,
 				D7FDC8DE27C72C9600BC1747 /* KikenbutuApp.swift in Sources */,
+				D7FDC8F527C73F8200BC1747 /* ExamView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +300,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cam17380.Kikenbutu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -302,7 +322,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cam17380.Kikenbutu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
