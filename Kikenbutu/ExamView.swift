@@ -14,45 +14,46 @@ struct ExamView: View {
     @State var index:Int = 0
     @State var okMark = false
     @State var ngMark = false
-    @State var hintFlag = false
+
+    @EnvironmentObject var rm: ResultModel
+    @AppStorage("HintFlag") var hintFlag = false
  
     var body: some View {
         let qMax: Int = section.questions.count
-        var q = section.questions[index]    // Set next
+        let q = section.questions[index]    // Set next
         let ans = [ "", q.ans1, q.ans2, q.ans3, q.ans4 ]
         
         ZStack {
             VStack {
                 HStack {
-                    Toggle(isOn: $hintFlag) {
-                        Text("💡ヒントを表示する")
-                    }
-                    Spacer()
-                    if q.isCorrect {
+                    Text("第\(index+1)問")
+                        .font(.title)
+                    if rm.result[section.id-1][index] {
                         Text("✅")
                     } else {
                         Text("🔲")
                     }
+                    Spacer()
                 }
+                /*
                 Text(section.sectionname)
-                    .font(.title)
+                    .font(.headline)
                     .frame(maxWidth: .infinity)
                     .background(Color.yellow)
-                
+                */
                 Text(q.question)
-                    .lineLimit(4)
                     .multilineTextAlignment(.leading)
-                    .font(.largeTitle)
+                    .font(.title)
                     .foregroundColor(Color.pink)
-                //  .frame(width: 340.0, height: 180.0)
+                 // .frame(minHeight: 0, maxHeight: 120)
                 Spacer()
                 
-                VStack {
+                VStack(spacing: 0) {
                     ForEach(1..<5) { num in
                         Button(action: {
                             if (q.answer == num) {
                                 okProc()
-                                q.isCorrect = true
+                                rm.result[section.id-1][index] = true
                             } else {
                                 ngProc()
                             }
@@ -63,9 +64,9 @@ struct ExamView: View {
                                     .frame(width: 50.0, height: 50.0)
                                     .padding(.leading)
                                 Text(ans[num])
-                                    .lineLimit(4)
                                     .multilineTextAlignment(.leading)
-                                    .font(.title)
+                                    .font(.title2)
+                                    .frame( minHeight: 0, maxHeight: 150)
                                 Spacer()
                             }
                         }
@@ -76,8 +77,8 @@ struct ExamView: View {
                     Button("←前へ") {
                         prevQuest()
                     }
-                    .font(.largeTitle)
-                    .frame(width: 160, height: 80)
+                    .font(.title)
+                    .frame(width: 160, height: 50)
                     .foregroundColor(.black)
                     .background(Color.orange)
                     .cornerRadius(32)
@@ -88,8 +89,8 @@ struct ExamView: View {
                     Button("次へ→") {
                         nextQuest(max: qMax)
                     }
-                    .font(.largeTitle)
-                    .frame(width: 160, height: 80)
+                    .font(.title)
+                    .frame(width: 160, height: 50)
                     .foregroundColor(.black)
                     .background(Color.orange)
                     .cornerRadius(32)
@@ -98,15 +99,16 @@ struct ExamView: View {
                 
                 if hintFlag {
                     Text(q.hint)
-                        .font(.largeTitle)
+                        .font(.title3)
                         .padding(.horizontal)
                         .foregroundColor(Color.orange)
+                        .frame(minHeight: 0, maxHeight: 120)
                 }
             }
             if okMark {
                 Image("okmark")
                     .resizable()
-                    .frame(width: 300, height: 300)
+                    .frame(width: 250, height: 250)
             }
             if ngMark {
                 Image("ngmark")
@@ -114,7 +116,7 @@ struct ExamView: View {
                     .frame(width: 300, height: 300)
             }
         }
-        .navigationBarTitle("丙種危険物取扱者 試験問題")
+        .navigationBarTitle("\(section.sectionname)")
         .navigationBarTitleDisplayMode(.inline)
     }
     
@@ -164,6 +166,8 @@ func playSound(id: SystemSoundID) {
 
 struct ExamView_Previews: PreviewProvider {
     static var previews: some View {
-        ExamView(section: kukus[0])
+        ExamView(section: qDatas[0])
+            .environmentObject(ResultModel())
+.previewInterfaceOrientation(.landscapeLeft)
     }
 }

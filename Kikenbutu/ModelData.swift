@@ -7,7 +7,15 @@
 
 import Foundation
 
-var kukus: [QuestSection] = load("heisyu_01.json")
+class ResultModel: ObservableObject {
+    @Published var result: [[Bool]] = [
+        [false,false,false,false,false,false,false,false,false,false],
+        [false,false,false,false,false],
+        [false,false,false,false,false,false,false,false,false,false]
+    ]
+}
+
+var qDatas: [QuestSection] = load("heisyu_01.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

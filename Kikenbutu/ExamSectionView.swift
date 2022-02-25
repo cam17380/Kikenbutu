@@ -10,12 +10,22 @@ import SwiftUI
 struct ExamSectionView: View {
     var quests: [QuestSection]  // All questions(json file) data.
     var title: String   // Questions title.
+
+    @EnvironmentObject var rm: ResultModel
+
+    @AppStorage("HintFlag") var hintFlag = false
     
     var body: some View {
         NavigationView {
-            List(quests) { quest in
-                NavigationLink(destination: ExamView(section: quest)) {
-                    SectionTitle(quest: quest)
+            List {
+                ForEach(quests) { quest in
+                    NavigationLink(destination: ExamView(section: quest)) {
+                        SectionTitle(quest: quest)
+                    }
+                }
+                Spacer()
+                Toggle(isOn: $hintFlag) {
+                    Text("💡ヒントを表示する")
                 }
             }
         }
@@ -24,19 +34,22 @@ struct ExamSectionView: View {
 
 struct ExamSectionView_Previews: PreviewProvider {
     static var previews: some View {
-        ExamSectionView(quests: kukus, title: "kikenbutu")
+        ExamSectionView(quests: qDatas, title: "kikenbutu")
+            .environmentObject(ResultModel())
+            .previewInterfaceOrientation(.landscapeLeft)
     }
 }
 
 struct SectionTitle: View {
     var quest: QuestSection
-    
+    @EnvironmentObject var rm: ResultModel
+
     var body: some View {
         HStack {
             Text(quest.sectionname)
             Spacer()
-            let ok = quest.questions.filter{$0.isCorrect}.count
-            let total = quest.questions.count
+            let ok = rm.result[quest.id-1].filter{$0}.count
+            let total = rm.result[quest.id-1].count
             Text("\(ok)")
             Text("/\(total)")
             if (Double(ok) / Double(total)) > 0.59 {

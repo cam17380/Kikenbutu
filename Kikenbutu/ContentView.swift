@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         HStack {
-            ExamSectionView(quests: kukus, title: "kikenbutu")
+            ExamSectionView(quests: qDatas, title: "kikenbutu")
         }
     }
 }
@@ -18,5 +18,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(ResultModel())
+.previewInterfaceOrientation(.landscapeLeft)
     }
 }
