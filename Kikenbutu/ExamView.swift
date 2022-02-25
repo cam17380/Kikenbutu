@@ -15,98 +15,59 @@ struct ExamView: View {
     @State var okMark = false
     @State var ngMark = false
     @State var hintFlag = false
-    
+ 
     var body: some View {
         let qMax: Int = section.questions.count
+        var q = section.questions[index]    // Set next
+        let ans = [ "", q.ans1, q.ans2, q.ans3, q.ans4 ]
+        
         ZStack {
             VStack {
+                HStack {
+                    Toggle(isOn: $hintFlag) {
+                        Text("💡ヒントを表示する")
+                    }
+                    Spacer()
+                    if q.isCorrect {
+                        Text("✅")
+                    } else {
+                        Text("🔲")
+                    }
+                }
                 Text(section.sectionname)
                     .font(.title)
                     .frame(maxWidth: .infinity)
-                    .background(Color.purple)
-                Toggle(isOn: $hintFlag) {
-                    Text("💡ヒントを表示する")
-                }
-                
-                var q = section.questions[index]    // Set next question.
+                    .background(Color.yellow)
                 
                 Text(q.question)
-                    .font(.system(size: 42))
+                    .lineLimit(4)
+                    .multilineTextAlignment(.leading)
+                    .font(.largeTitle)
                     .foregroundColor(Color.pink)
                 //  .frame(width: 340.0, height: 180.0)
                 Spacer()
                 
                 VStack {
-                    Button(action: {
-                        if (q.answer == 1) {
-                            okProc()
-                            q.isCorrect = true
-                        } else {
-                            ngProc()
-                        }
-                    }) {
-                        HStack {
-                            Image(systemName: "1.square")
-                                .resizable()
-                                .frame(width: 50.0, height: 50.0)
-                            Text(q.ans1)
-                                .font(.largeTitle)
-                            Spacer()
-                        }
-                    }
-                    .padding(.trailing)
-                    
-                    Button(action: {
-                        if (q.answer == 2) {
-                            okProc()
-                            q.isCorrect = true
-                        } else {
-                            ngProc()
-                        }
-                    }) {
-                        HStack {
-                            Image(systemName: "2.square")
-                                .resizable()
-                                .frame(width: 50.0, height: 50.0)
-                            Text(q.ans2)
-                                .font(.largeTitle)
-                            Spacer()
-                        }
-                    }
-                    
-                    Button(action: {
-                        if (q.answer == 3) {
-                            okProc()
-                            q.isCorrect = true
-                        } else {
-                            ngProc()
-                        }
-                    }) {
-                        HStack {
-                            Image(systemName: "3.square")
-                                .resizable()
-                                .frame(width: 50.0, height: 50.0)
-                            Text(q.ans3)
-                                .font(.largeTitle)
-                            Spacer()
-                        }
-                    }
-                    
-                    Button(action: {
-                        if (q.answer == 4) {
-                            okProc()
-                            q.isCorrect = true
-                        } else {
-                            ngProc()
-                        }
-                    }) {
-                        HStack {
-                            Image(systemName: "4.square")
-                                .resizable()
-                                .frame(width: 50.0, height: 50.0)
-                            Text(q.ans4)
-                                .font(.largeTitle)
-                            Spacer()
+                    ForEach(1..<5) { num in
+                        Button(action: {
+                            if (q.answer == num) {
+                                okProc()
+                                q.isCorrect = true
+                            } else {
+                                ngProc()
+                            }
+                        }) {
+                            HStack {
+                                Image(systemName: "\(num).square")
+                                    .resizable()
+                                    .frame(width: 50.0, height: 50.0)
+                                    .padding(.leading)
+                                Text(ans[num])
+                                    .lineLimit(4)
+                                    .multilineTextAlignment(.leading)
+                                    .font(.title)
+                                Spacer()
+                            }
                         }
                     }
                 }
@@ -123,6 +84,7 @@ struct ExamView: View {
                     
                     Text("第\(index+1)問")
                         .font(.largeTitle)
+                        .padding(.horizontal)
                     Button("次へ→") {
                         nextQuest(max: qMax)
                     }
@@ -152,6 +114,8 @@ struct ExamView: View {
                     .frame(width: 300, height: 300)
             }
         }
+        .navigationBarTitle("丙種危険物取扱者 試験問題")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     func resetCount() {
@@ -185,61 +149,6 @@ struct ExamView: View {
     func prevQuest() {
         if index > 0 {
             index -= 1
-        }
-    }
-    
-    struct FinishView: View {
-        @Environment(\.presentationMode) var presentationMode
-        
-        var body: some View {
-            VStack {
-                Text("Good luck next!")
-                    .bold()
-                    .font(.largeTitle)
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    VStack {
-                        Image(systemName: "cloud.drizzle")
-                            .resizable()
-                            .frame(width: 50.0, height: 50.0)
-                        Image(systemName: "tortoise")
-                            .resizable()
-                            .frame(width: 100.0, height: 100.0)
-                    }
-                }
-                Text("Retry...")
-                    .font(.title)
-            }
-        }
-    }
-    
-    struct CompleteView: View {
-        @Environment(\.presentationMode) var presentationMode
-        
-        var body: some View {
-            VStack {
-                Text("Congratulations!")
-                    .bold()
-                    .font(.largeTitle)
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    VStack {
-                        Image(systemName: "crown")
-                            .resizable()
-                            .frame(width: 50.0, height: 50.0)
-                            .foregroundColor(.red)
-                        Image(systemName: "hare")
-                            .resizable()
-                            .frame(width: 100.0, height: 100.0)
-                            .foregroundColor(.red)
-                    }
-                }
-            }
-            .onAppear {
-                playSound(id: 1025) // Fanfare
-            }
         }
     }
 }
