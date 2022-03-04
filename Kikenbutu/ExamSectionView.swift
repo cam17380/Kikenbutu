@@ -10,8 +10,7 @@ import SwiftUI
 struct ExamSectionView: View {
     var quests: [QuestSection]  // All questions(json file) data.
     var title: String   // Questions title.
-
-    @EnvironmentObject var rm: ResultModel
+    @ObservedObject var rm: ResultModel
 
     @AppStorage("HintFlag") var hintFlag = false
     
@@ -19,8 +18,8 @@ struct ExamSectionView: View {
         NavigationView {
             List {
                 ForEach(quests) { quest in
-                    NavigationLink(destination: ExamView(section: quest)) {
-                        SectionTitle(quest: quest)
+                    NavigationLink(destination: ExamView(section: quest, rm: rm)) {
+                        SectionTitle(quest: quest, rm: rm)
                     }
                 }
                 Spacer()
@@ -34,22 +33,21 @@ struct ExamSectionView: View {
 
 struct ExamSectionView_Previews: PreviewProvider {
     static var previews: some View {
-        ExamSectionView(quests: qDatas, title: "kikenbutu")
-            .environmentObject(ResultModel())
+        ExamSectionView(quests: qDatas, title: "kikenbutu", rm: ResultModel())
             .previewInterfaceOrientation(.landscapeLeft)
     }
 }
 
 struct SectionTitle: View {
     var quest: QuestSection
-    @EnvironmentObject var rm: ResultModel
+    @ObservedObject var rm: ResultModel
 
     var body: some View {
         HStack {
             Text(quest.sectionname)
             Spacer()
             let ok = rm.result[quest.id-1].filter{$0}.count
-            let total = rm.result[quest.id-1].count
+            let total = quest.questions.count
             Text("\(ok)")
             Text("/\(total)")
             if (Double(ok) / Double(total)) > 0.59 {

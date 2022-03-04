@@ -14,8 +14,8 @@ struct ExamView: View {
     @State var index:Int = 0
     @State var okMark = false
     @State var ngMark = false
+    @ObservedObject var rm: ResultModel
 
-    @EnvironmentObject var rm: ResultModel
     @AppStorage("HintFlag") var hintFlag = false
  
     var body: some View {
@@ -166,8 +166,7 @@ func playSound(id: SystemSoundID) {
 
 struct ExamView_Previews: PreviewProvider {
     static var previews: some View {
-        ExamView(section: qDatas[0])
-            .environmentObject(ResultModel())
+        ExamView(section: qDatas[0], rm: ResultModel())
 .previewInterfaceOrientation(.landscapeLeft)
     }
 }

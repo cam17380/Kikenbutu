@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7CE2DA3F27CF483D00A0B34C /* heisyu_02.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CE2DA3E27CF483D00A0B34C /* heisyu_02.json */; };
 		D7FDC8DE27C72C9600BC1747 /* KikenbutuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FDC8DD27C72C9600BC1747 /* KikenbutuApp.swift */; };
 		D7FDC8E027C72C9600BC1747 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FDC8DF27C72C9600BC1747 /* ContentView.swift */; };
 		D7FDC8E227C72C9A00BC1747 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7FDC8E127C72C9A00BC1747 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7CE2DA3E27CF483D00A0B34C /* heisyu_02.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = heisyu_02.json; sourceTree = "<group>"; };
 		D7FDC8DA27C72C9600BC1747 /* Kikenbutu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kikenbutu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FDC8DD27C72C9600BC1747 /* KikenbutuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KikenbutuApp.swift; sourceTree = "<group>"; };
 		D7FDC8DF27C72C9600BC1747 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				D7FDC8EC27C72D6F00BC1747 /* QuestSection.swift */,
 				D7FDC8EE27C72D9700BC1747 /* ModelData.swift */,
 				D7FDC8F027C72E4200BC1747 /* heisyu_01.json */,
+				7CE2DA3E27CF483D00A0B34C /* heisyu_02.json */,
 				D7FDC8E127C72C9A00BC1747 /* Assets.xcassets */,
 				D7FDC8E627C72C9A00BC1747 /* Info.plist */,
 				D7FDC8E327C72C9A00BC1747 /* Preview Content */,
@@ -143,6 +146,7 @@
 			files = (
 				D7FDC8F127C72E4200BC1747 /* heisyu_01.json in Resources */,
 				D7FDC8E527C72C9A00BC1747 /* Preview Assets.xcassets in Resources */,
+				7CE2DA3F27CF483D00A0B34C /* heisyu_02.json in Resources */,
 				D7FDC8E227C72C9A00BC1747 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
